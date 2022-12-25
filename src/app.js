@@ -26,7 +26,7 @@ const startBot = async() => {
 				if (events["connection.update"]) {
 					let conn = events["connection.update"]
 					// reconnect if disconnection
-					baileys.keepConnected(events, startBot)
+					baileys.keepConnected({bot, events, startBot})
 					handleConnection(bot, conn)
 				}
 
@@ -35,18 +35,18 @@ const startBot = async() => {
 						mongoSaveCreds
 					} = baileys
 
+         if (mongoSaveCreds) {
 					await mongoSaveCreds()
-					
-					/*
+         } else {
 					// save credentials locally
-					
-					const {
+         	const {
 						defaultSaveCreds
 					} = baileys
 
 					await defaultSaveCreds()
-					*/
-
+					logger.warn("Could not access the database. saving files locally.")
+         }
+					
 				}
 
 				if (events["messages.upsert"]) {
