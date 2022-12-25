@@ -1,7 +1,3 @@
-import qrcode from "qrcode-terminal"
-import path from "path"
-import Baileys from "@adiwajshing/baileys"
-
 import logger from "../lib/logger/index.js"
 import * as baileys from "../lib/baileys/index.js"
 
@@ -16,7 +12,7 @@ const startBot = async() => {
 			Sock
 		} = baileys
 
-		const bot = Sock('db')
+		const bot = Sock("db")
 
 		/*
    // save credentials locally
@@ -30,7 +26,7 @@ const startBot = async() => {
 				if (events["connection.update"]) {
 					let conn = events["connection.update"]
 					// reconnect if disconnection
-          baileys.keepConnected(events, startBot)
+					baileys.keepConnected(events, startBot)
 					handleConnection(bot, conn)
 				}
 

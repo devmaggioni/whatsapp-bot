@@ -1,28 +1,38 @@
 {
-	"type": "module",
-	"name": "node-whatsapp-bot",
-	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
-	"scripts": {
-		"start": "node start.js",
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"dependencies": {
-		"@adiwajshing/baileys": "4.4.0",
-		"dotenv": "^16.0.3",
-		"mongodb": "^4.13.0",
-		"mongoose": "^6.8.1",
-		"path": "^0.12.7",
-		"pino": "^8.8.0",
-		"pino-http": "^8.3.0",
-		"pino-pretty": "^9.1.1",
-		"qrcode-terminal": "^0.12.0"
-	},
-	"devDependencies": {
-		"eslint": "^8.30.0"
-	}
+  "type": "module",
+  "name": "whatsapp-bot",
+  "version": "0.0.1",
+  "main": "start.js",
+  "scripts": {
+    "start": "node start.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "devmaggioni",
+  "license": "ISC",
+  "dependencies": {
+    "@adiwajshing/baileys": "4.4.0",
+    "dotenv": "^16.0.3",
+    "mongodb": "^4.13.0",
+    "path": "^0.12.7",
+    "pino": "^8.8.0",
+    "pino-http": "^8.3.0",
+    "pino-pretty": "^9.1.1",
+    "qrcode-terminal": "^0.12.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.30.0"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devmaggioni/node-whatsapp-bot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/devmaggioni/node-whatsapp-bot/issues"
+  },
+  "homepage": "https://github.com/devmaggioni/node-whatsapp-bot#readme",
+  "description": ""
 }
