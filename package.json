@@ -14,6 +14,7 @@
     "@adiwajshing/baileys": "4.4.0",
     "@hapi/boom": "^10.0.0",
     "dotenv": "^16.0.3",
+    "fs": "^0.0.1-security",
     "mongodb": "^4.13.0",
     "path": "^0.12.7",
     "pino": "^8.8.0",

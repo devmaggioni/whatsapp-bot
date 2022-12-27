@@ -12,13 +12,7 @@ const startBot = async() => {
 			Sock
 		} = baileys
 
-		const bot = Sock("db")
-
-		/*
-   // save credentials locally
-
-		const bot = Sock('local')
-		*/
+		const bot = Sock("db") // "local" to save locally
 
 		bot.ev.process(
 			async(events) => {
