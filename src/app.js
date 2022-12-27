@@ -1,4 +1,3 @@
-import logger from "../lib/logger/index.js"
 import * as baileys from "../lib/baileys/index.js"
 
 /* handle Events */
@@ -29,17 +28,17 @@ const startBot = async() => {
 						mongoSaveCreds
 					} = baileys
 
-         if (mongoSaveCreds) {
-					await mongoSaveCreds()
-         } else {
+					if (mongoSaveCreds) {
+						await mongoSaveCreds()
+					} else {
 					// save credentials locally
          	const {
-						defaultSaveCreds
-					} = baileys
+							defaultSaveCreds
+						} = baileys
 
-					await defaultSaveCreds()
-					logger.warn("Could not access the database. saving files locally.")
-         }
+						await defaultSaveCreds()
+						logger.warn("Could not access the database. saving files locally.")
+					}
 					
 				}
 

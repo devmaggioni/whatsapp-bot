@@ -1,7 +1,7 @@
 import * as dotenv from "dotenv"
 dotenv.config()
 import logger from "../../lib/logger/index.js"
-import * as baileys from '../../lib/baileys/index.js'
+import * as baileys from "../../lib/baileys/index.js"
 import commands from "../commands/index.js"
 
 export default async function handleMessages(bot, message) {
@@ -18,20 +18,35 @@ export default async function handleMessages(bot, message) {
 			simpleBotInfo
 		} = baileys
 
+		const groupData = message.messages[0].key.remoteJid.endsWith("g.us") ? await simpleGroupData(bot, message.messages[0].key.remoteJid): false
+		const isGroup = !!groupData
+		let isAdmin = false
+		if (isGroup) {
+			groupData.admins.map(admin => {
+				if (admin.id === message.messages[0]?.key?.participant) isAdmin = true
+			})
+		}
+
 		const mek = simpleMessage(message.messages[0])
 		const quoted = message?.messages[0] || undefined
 
-		const groupData = mek?.header?.remoteJid?.endsWith("g.us") ? await simpleGroupData(bot, mek.header.remoteJid) : false;
-		
-		const botInfo = groupData ? await simpleBotInfo(bot, groupData) : false
+		let isOwner = false
+		if (process?.env?.BOT_OWNER) {
+			let owner = process.env.BOT_OWNER + "@s.whatsapp.net"
+			if (isGroup && mek.header.participant === owner || !isGroup && mek.header.remoteJid === owner) isOwner = true
+		}
+
+		const botInfo = groupData ? await simpleBotInfo(bot,
+			groupData): false
 
 		logger.info(mek)
-		console.log('\n')
+		console.log("\n")
 		logger.debug(groupData)
 		logger.debug(botInfo)
 		logger.debug(message.messages[0])
 
-		const sender = mek?.header?.remoteJid
+		const from = mek?.header?.remoteJid
+		const sender = mek?.header?.participant || mek?.header?.remoteJid
 
 		const prefix = process.env.BOT_PREFIX || "#"
 		const cmd = mek?.body?.text && mek?.body?.text.trim().startsWith(prefix) ? mek.body.text.trim().toLowerCase().split(prefix)[1].split(" ")[0]: undefined
@@ -40,13 +55,17 @@ export default async function handleMessages(bot, message) {
 		const params = {
 			bot,
 			cmd,
+			from,
 			sender,
 			prefix,
 			args,
 			mek,
 			quoted,
-			simpleGroupData,
-			simpleBotInfo
+			groupData,
+			isAdmin,
+			isGroup,
+			isOwner,
+			botInfo
 		}
 		if (cmd) commands(params)
 

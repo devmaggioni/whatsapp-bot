@@ -13,17 +13,17 @@ async function run(){
 		isNotDefined("URL_MONGO")
 	}
 	
-if (!process.env.BOT_PREFIX) {
+	if (!process.env.BOT_PREFIX) {
 		await sleep(interval)
 		isNotDefined("BOT_PREFIX", "#")
 	}
 	
-if (!process.env.BOT_OWNER) {
+	if (!process.env.BOT_OWNER) {
 		await sleep(interval)
 		isNotDefined("BOT_OWNER")
 	}
 	
-if (!process.env.BOT_LOGGER_LEVEL) {
+	if (!process.env.BOT_LOGGER_LEVEL) {
 		await sleep(interval)
 		isNotDefined("BOT_LOGGER_LEVEL", "info")
 	}

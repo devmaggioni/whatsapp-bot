@@ -5,6 +5,7 @@
   "main": "start.js",
   "scripts": {
     "start": "node start.js",
+    "eslint": "eslint . --fix || node start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,6 +16,7 @@
     "@hapi/boom": "^10.0.0",
     "dotenv": "^16.0.3",
     "fs": "^0.0.1-security",
+    "jimp": "^0.16.2",
     "mongodb": "^4.13.0",
     "path": "^0.12.7",
     "pino": "^8.8.0",
